@@ -1,0 +1,144 @@
+/* ============================================================
+   Jadzia — Art Portfolio
+   Minimalist gallery. White paper, black ink, one clean sans.
+   Let the work speak; keep the frame quiet.
+   Swap the ACCENT and fonts below to change the whole mood.
+   ============================================================ */
+
+:root {
+  --bg:      #ffffff;
+  --ink:     #14110f;
+  --muted:   #8a857e;
+  --line:    #e7e3dd;
+  --accent:  #14110f;          /* used for hovers/links; keep near-black for a gallery feel */
+  --wrap:    1180px;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-name: "Inter", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Header / nav ---------- */
+header {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 40px 28px 26px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.site-name {
+  font-family: var(--font-name);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.site-name span { color: var(--muted); font-weight: 400; }
+nav { display: flex; gap: 26px; }
+nav a {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+nav a:hover, nav a.active { color: var(--ink); border-color: var(--ink); }
+
+/* ---------- Main ---------- */
+main { max-width: var(--wrap); margin: 0 auto; padding: 40px 28px 80px; }
+
+.intro { max-width: 60ch; margin-bottom: 42px; }
+.intro h1 {
+  font-family: var(--font-name);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.intro p { color: var(--muted); font-size: 1.02rem; }
+
+/* ---------- Gallery (masonry via CSS columns; keeps each piece's true shape) ---------- */
+.gallery { column-count: 3; column-gap: 24px; }
+.piece { break-inside: avoid; margin: 0 0 30px; }
+.piece a { display: block; cursor: zoom-in; }
+.piece img {
+  width: 100%; display: block;
+  background: #f2efe9;
+  transition: opacity .2s;
+}
+.piece a:hover img { opacity: 0.9; }
+.piece figcaption {
+  margin-top: 9px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.piece .title { color: var(--ink); font-style: italic; }
+
+/* ---------- About ---------- */
+.about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 48px; align-items: start; }
+.about-grid img { width: 100%; background: #f2efe9; }
+.about-copy h1 {
+  font-family: var(--font-name);
+  font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 18px; letter-spacing: -0.01em;
+}
+.about-copy p { margin-bottom: 1em; color: #46423d; max-width: 62ch; }
+
+/* ---------- Contact ---------- */
+.contact h1 {
+  font-family: var(--font-name);
+  font-weight: 500; font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  margin-bottom: 18px;
+}
+.contact p { color: var(--muted); max-width: 54ch; margin-bottom: 22px; }
+.contact-links { display: flex; flex-direction: column; gap: 12px; }
+.contact-links a {
+  font-size: 1.05rem;
+  width: fit-content;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 3px;
+  transition: border-color .2s;
+}
+.contact-links a:hover { border-color: var(--ink); }
+.contact-links .label { color: var(--muted); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+
+/* ---------- Footer ---------- */
+footer {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 30px 28px 50px;
+  border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+footer a:hover { color: var(--ink); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .gallery { column-count: 2; }
+  .about-grid { grid-template-columns: 1fr; gap: 28px; }
+  .about-grid img { max-width: 300px; }
+}
+@media (max-width: 560px) {
+  .gallery { column-count: 1; }
+  header { padding: 28px 20px 20px; }
+  main { padding: 30px 20px 60px; }
+  nav { gap: 18px; }
+}
