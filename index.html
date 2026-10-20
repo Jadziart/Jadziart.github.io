@@ -26,39 +26,49 @@
       <p>A short line about the work goes here, the themes, the materials, what it is about. Edit this on the index page.</p>
     </div>
 
+    <!-- ===== MEDIUM TABS =====
+         Each button filters the gallery. data-filter must match the data-cat on the pieces.
+         To add a medium: add a button here, then tag pieces with data-cat="yourslug". -->
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">All</button>
+      <button class="filter-tab" data-filter="paintings">Paintings</button>
+      <button class="filter-tab" data-filter="drawings">Drawings</button>
+      <button class="filter-tab" data-filter="mixed">Mixed Media</button>
+    </div>
+
     <!-- ===== GALLERY =====
          To add a piece, copy one <figure class="piece"> block and change:
            1) the image file name (src AND the href around it),
-           2) the caption text (title, medium, size, year).
-         Put your image files in the art/ folder. Any shape works. -->
+           2) the caption text (title, medium, size, year),
+           3) data-cat to the medium ("paintings", "drawings", "mixed", or your own). -->
     <div class="gallery">
 
-      <figure class="piece">
+      <figure class="piece" data-cat="paintings">
         <a href="art/art1.jpg" target="_blank" rel="noopener"><img src="art/art1.jpg" alt="Artwork title" loading="lazy"></a>
         <figcaption><span class="title">Untitled I</span><br>Oil on canvas · 18 x 24 in · 2026</figcaption>
       </figure>
 
-      <figure class="piece">
+      <figure class="piece" data-cat="paintings">
         <a href="art/art2.jpg" target="_blank" rel="noopener"><img src="art/art2.jpg" alt="Artwork title" loading="lazy"></a>
         <figcaption><span class="title">Untitled II</span><br>Acrylic on panel · 24 x 18 in · 2026</figcaption>
       </figure>
 
-      <figure class="piece">
+      <figure class="piece" data-cat="mixed">
         <a href="art/art3.jpg" target="_blank" rel="noopener"><img src="art/art3.jpg" alt="Artwork title" loading="lazy"></a>
         <figcaption><span class="title">Untitled III</span><br>Mixed media · 20 x 20 in · 2025</figcaption>
       </figure>
 
-      <figure class="piece">
+      <figure class="piece" data-cat="drawings">
         <a href="art/art4.jpg" target="_blank" rel="noopener"><img src="art/art4.jpg" alt="Artwork title" loading="lazy"></a>
         <figcaption><span class="title">Untitled IV</span><br>Graphite on paper · 12 x 18 in · 2025</figcaption>
       </figure>
 
-      <figure class="piece">
+      <figure class="piece" data-cat="paintings">
         <a href="art/art5.jpg" target="_blank" rel="noopener"><img src="art/art5.jpg" alt="Artwork title" loading="lazy"></a>
         <figcaption><span class="title">Untitled V</span><br>Oil on canvas · 30 x 20 in · 2025</figcaption>
       </figure>
 
-      <figure class="piece">
+      <figure class="piece" data-cat="paintings">
         <a href="art/art6.jpg" target="_blank" rel="noopener"><img src="art/art6.jpg" alt="Artwork title" loading="lazy"></a>
         <figcaption><span class="title">Untitled VI</span><br>Watercolor · 16 x 20 in · 2024</figcaption>
       </figure>
@@ -70,5 +80,22 @@
     <span>© Jadzia Fields 2026</span>
     <a href="mailto:jadziart100@gmail.com">jadziart100@gmail.com</a>
   </footer>
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll('.filter-tab');
+      var pieces = document.querySelectorAll('.piece');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+          var f = tab.getAttribute('data-filter');
+          pieces.forEach(function (p) {
+            var show = (f === 'all') || (p.getAttribute('data-cat') === f);
+            p.style.display = show ? '' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
