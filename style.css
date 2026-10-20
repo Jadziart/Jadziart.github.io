@@ -142,3 +142,16 @@ footer a:hover { color: var(--ink); }
   main { padding: 30px 20px 60px; }
   nav { gap: 18px; }
 }
+
+/* ---------- Medium filter tabs ---------- */
+.filter-tabs { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 0 0 34px; border-bottom: 1px solid var(--line); padding-bottom: 14px; }
+.filter-tab {
+  background: none; border: 0; cursor: pointer; padding: 4px 0;
+  font-family: var(--font-body);
+  font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.filter-tab:hover { color: var(--ink); }
+.filter-tab.active { color: var(--ink); border-color: var(--ink); }
